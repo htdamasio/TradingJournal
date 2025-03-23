@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+
 import IndexPage from "@/pages/index";
 import DocsPage from "@/pages/docs";
 import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
+import DashboardPage from "@/pages/dashboard";
 import AboutPage from "@/pages/about";
 import RegistrationPage from "@/pages/registration";
 import { UserProvider } from "@/contexts/user_context_provider";
@@ -24,7 +25,7 @@ export default function App() {
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoutes />}>
-          <Route element={<BlogPage />} path="/blog" />
+          <Route element={<DashboardPage />} path="/dashboard" />
           {/* Trade Page -> Add trades, manage open trade and edit trades */}
           {/* Dashboard page -> page for analisys of the trades */}
         </Route>

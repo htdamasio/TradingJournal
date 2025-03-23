@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class Api::V1::RegistrationsController < ApplicationController
   def create
     puts("Reaching here 1")
     user = User.create(

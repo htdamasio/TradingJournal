@@ -114,7 +114,7 @@ export default function RegistrationPage(props: { bIsLogin: boolean }) {
               loggedInStatus: "LOGGED_IN",
               user: data.user,
             });
-            navigate("/blog");
+            navigate("/dashboard");
           }
         } else {
           setErrors(data.errors);

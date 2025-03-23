@@ -96,7 +96,7 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">Journal</p>
           </Link>
         </NavbarBrand>
-        {/* <div className="hidden lg:flex gap-4 justify-start ml-2">
+        <div className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <Link
@@ -111,7 +111,7 @@ export const Navbar = () => {
               </Link>
             </NavbarItem>
           ))}
-        </div> */}
+        </div>
       </NavbarContent>
 
       <NavbarContent
