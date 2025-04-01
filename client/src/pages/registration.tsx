@@ -4,17 +4,19 @@ import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { Spinner } from "@heroui/spinner";
 
 import { useUser } from "@/contexts/user_context_provider";
 import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
-import { HeartFilledIcon } from "@/components/icons";
+import { EyeSlashFilledIcon, EyeFilledIcon } from "@/components/icons";
 import env from "@/constants";
 
 export default function RegistrationPage(props: { bIsLogin: boolean }) {
   const navigate = useNavigate();
   const { userState, setUserState } = useUser();
 
+  const [loading, setLoading] = useState<Boolean>(false);
   const [errors, setErrors] = useState([]);
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -60,6 +62,7 @@ export default function RegistrationPage(props: { bIsLogin: boolean }) {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const data = Object.fromEntries(new FormData(e.currentTarget));
 
     // Custom validation checks
@@ -122,6 +125,9 @@ export default function RegistrationPage(props: { bIsLogin: boolean }) {
       })
       .catch((error) => {
         console.error("Error:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -161,11 +167,16 @@ export default function RegistrationPage(props: { bIsLogin: boolean }) {
               endContent={
                 <Button
                   isIconOnly
-                  className="bg-none"
+                  className="focus:outline-none"
+                  type="button"
                   variant="light"
                   onPress={() => setPasswordVisible(!passwordVisible)}
                 >
-                  <HeartFilledIcon />
+                  {passwordVisible ? (
+                    <EyeFilledIcon className="bg-none text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <EyeSlashFilledIcon className="bg-none text-2xl text-default-400 pointer-events-none" />
+                  )}
                 </Button>
               }
               errorMessage={getPasswordError(password)}
@@ -208,7 +219,11 @@ export default function RegistrationPage(props: { bIsLogin: boolean }) {
                 Cancel
               </Button>
               <Button className="w-full" color="primary" type="submit">
-                {props.bIsLogin ? "Login" : "Register"}
+                {loading ? (
+                  <Spinner color="white" variant="gradient" />
+                ) : (
+                  <> {props.bIsLogin ? "Login" : "Register"} </>
+                )}
               </Button>
             </div>
 

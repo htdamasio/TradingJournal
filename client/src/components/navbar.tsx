@@ -19,6 +19,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { SearchIcon } from "@/components/icons";
 import { Logo } from "@/components/icons";
 import { useUser } from "@/contexts/user_context_provider";
+import { UserDropdown } from "@/components/user_dropdown";
 
 export const Navbar = () => {
   const { userState, logout } = useUser();
@@ -148,13 +149,14 @@ export const Navbar = () => {
               </Link>
             </>
           ) : (
-            <Link
-              className="text-sm font-normal text-default-600 bg-default-100 px-4 py-3 rounded-xl"
-              href="/login"
-              onPress={() => logout()}
-            >
-              Logout
-            </Link>
+            <UserDropdown />
+            // <Link
+            //   className="text-sm font-normal text-default-600 bg-default-100 px-4 py-3 rounded-xl"
+            //   href="/login"
+            //   onPress={() => logout()}
+            // >
+            //   Logout1
+            // </Link>
           )}
         </NavbarItem>
       </NavbarContent>

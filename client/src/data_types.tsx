@@ -6,6 +6,8 @@ interface IUserState {
 interface IUser {
   id: number;
   email: string;
+  name: string;
+  photo_url: string;
   password_digest: string;
   created_at: string;
   updated_at: string;
